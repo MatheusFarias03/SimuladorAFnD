@@ -25,11 +25,6 @@
  * de palavras que deverao ser testadas no AFND. As palavras estarao
  * cada uma em uma linha, contendo somente os simbolos do alfabeto. As
  * palavras devem ter no maximo 100 caracteres.
- *
- * ERROS (Num -> Mensagem):
- * 1 -> Erro ao ler o arquivo;
- * 2 -> Quantidade de letras do alfabeto supera limite;
- *  
  * */
 int ler_arquivo_afnd(const char* nome_arquivo, char* alfabeto, int q_estados, int f_estados, int n_transicoes, char** palavras)
 {
@@ -61,10 +56,14 @@ int ler_arquivo_afnd(const char* nome_arquivo, char* alfabeto, int q_estados, in
 							*alfabeto = *linha_atual;
 							alfabeto++;
 						}
-						if (i > NUM_MAX_ALFABETO)
+						else if (linha_atual[i] == NULL)
+						{
+							break;
+						}
+						else if (i > NUM_MAX_ALFABETO)
 						{
 							printf("ERROR: Quantidade de letras do alfabeto supera o limite máximo (10).");
-							return 2;
+							return 1;
 						}
                     }
                 }
@@ -74,6 +73,6 @@ int ler_arquivo_afnd(const char* nome_arquivo, char* alfabeto, int q_estados, in
                 break;
         }
 	}
-
+	fclose(arquivo);
 	return 0;
 }

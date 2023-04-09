@@ -5,6 +5,7 @@
  * */
 
 #include <stdio.h>
+#include "readFile.h"
 
 int main(int argc, char* argv[])	
 {
@@ -17,8 +18,10 @@ int main(int argc, char* argv[])
 	/* Declaracao das variaveis. */
 	char* nome_arquivo = argv[1];
 	char* alfabeto;
-	int q_estados = 0;
+	int q_estados, f_estados, n_transicoes = 0;
+	char** palavras;
 
+	ler_arquivo_afnd(nome_arquivo, alfabeto, q_estados, f_estados, n_transicoes, palavras);
 	
 	return 0;
 }

@@ -172,7 +172,16 @@ int ler_arquivo_afnd(const char* nome_arquivo, char* alfabeto, int* tamanho_alfa
     }
     
   }
-	
+
+  for (int i = 0; i < *q_estados; i++){
+    for (int j = 0; j < *tamanho_alfabeto; j++)
+    {
+      free(matriz_transicoes[i][j]);
+    }
+    free(matriz_transicoes[i]);
+  }
+  free(matriz_transicoes);
+  
 	fclose(arquivo);
 	return 0;
 }
